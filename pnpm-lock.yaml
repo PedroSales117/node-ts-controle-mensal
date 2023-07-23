@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  '@sinclair/typebox':
+    specifier: ^0.29.6
+    version: 0.29.6
+
 devDependencies:
   '@types/node':
     specifier: ^20.4.4
@@ -214,6 +219,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@sinclair/typebox@0.29.6:
+    resolution: {integrity: sha512-aX5IFYWlMa7tQ8xZr3b2gtVReCvg7f3LEhjir/JAjX2bJCMVJA5tIPv30wTD4KDfcwMd7DDYY3hFDeGmOgtrZQ==}
+    dev: false
 
   /@types/node@20.4.4:
     resolution: {integrity: sha512-CukZhumInROvLq3+b5gLev+vgpsIqC2D0deQr/yS1WnxvmYLlJXZpaQrQiseMY+6xusl79E04UjWoqyr+t1/Ew==}
