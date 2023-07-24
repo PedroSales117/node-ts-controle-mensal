@@ -1,0 +1,264 @@
+openapi: 3.0.3
+info:
+  title: Estimativa mensal
+  version: 1.0.0
+components:
+  schemas: {}
+paths:
+  /api/v1/status:
+    get:
+      tags:
+        - Healthcheck
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+  /api/v1/monthly/new-estimate:
+    post:
+      tags:
+        - Monthly Estimates
+      description: Endpoint for update monthly estimates.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                restante_para_liberdade_financeira:
+                  type: number
+                ativos:
+                  type: object
+                  properties:
+                    acoes:
+                      type: object
+                      properties:
+                        total:
+                          type: number
+                        lista:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              nome:
+                                type: string
+                              ticker:
+                                type: string
+                              valor:
+                                type: number
+                              tipo_renda:
+                                type: string
+                              tipo_investimento:
+                                type: string
+                            required:
+                              - nome
+                              - ticker
+                              - valor
+                              - tipo_renda
+                              - tipo_investimento
+                      required:
+                        - total
+                        - lista
+                    total:
+                      type: number
+                  required:
+                    - acoes
+                    - total
+                renda:
+                  type: object
+                  properties:
+                    salario:
+                      type: object
+                      properties:
+                        nome:
+                          type: string
+                        valor_bruto:
+                          type: number
+                        valor_liquido:
+                          type: number
+                        valor_ano:
+                          type: number
+                      required:
+                        - nome
+                        - valor_bruto
+                        - valor_liquido
+                        - valor_ano
+                    total:
+                      type: number
+                  required:
+                    - salario
+                    - total
+                passivos:
+                  type: object
+                  properties:
+                    responsabilidades:
+                      type: object
+                      properties:
+                        total:
+                          type: number
+                        lista:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              nome:
+                                type: string
+                              valor:
+                                type: number
+                              valor_tipo:
+                                type: string
+                              periodicidade:
+                                type: string
+                              importancia:
+                                type: number
+                            required:
+                              - nome
+                              - valor
+                              - valor_tipo
+                              - periodicidade
+                              - importancia
+                      required:
+                        - total
+                        - lista
+                    dividas:
+                      type: object
+                      properties:
+                        total:
+                          type: number
+                        lista:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              nome:
+                                type: string
+                              valor:
+                                type: number
+                            required:
+                              - nome
+                              - valor
+                      required:
+                        - total
+                        - lista
+                    Luxos:
+                      type: object
+                      properties:
+                        total:
+                          type: number
+                        lista:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              nome:
+                                type: string
+                              valor:
+                                type: number
+                              importancia:
+                                type: number
+                            required:
+                              - nome
+                              - valor
+                              - importancia
+                      required:
+                        - total
+                        - lista
+                    total:
+                      type: number
+                  required:
+                    - responsabilidades
+                    - dividas
+                    - Luxos
+                    - total
+                troca_ativos:
+                  type: object
+                  properties:
+                    total:
+                      type: number
+                    lista:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          nome:
+                            type: string
+                          valor:
+                            type: number
+                          importancia:
+                            type: number
+                        required:
+                          - nome
+                          - valor
+                          - importancia
+                  required:
+                    - total
+                    - lista
+              required:
+                - data
+                - restante_para_liberdade_financeira
+                - ativos
+                - renda
+                - passivos
+                - troca_ativos
+        required: true
+      responses:
+        "200":
+          description: Request was sent successfully, database updated.
+          content:
+            application/json:
+              schema:
+                description: Request was sent successfully, database updated.
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                required:
+                  - data
+        "400":
+          description: Bad request, must be revised.
+          content:
+            application/json:
+              schema:
+                description: Bad request, must be revised.
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                required:
+                  - data
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                description: Internal server error.
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                required:
+                  - data
+tags:
+  - name: Monthly estimate
