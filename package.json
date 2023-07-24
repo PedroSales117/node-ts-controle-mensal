@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "esrun src/app.ts --target=node18 --sourcemap --splitting --outdir=dist --platform=node --packages=external --tsconfig=./tsconfig.json",
     "build": "esbuild src/app.ts --target=node18 --bundle --outdir=dist --platform=node --packages=external --tsconfig=./tsconfig.json",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
@@ -11,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@digitak/esrun": "^3.2.24",
     "@types/node": "^20.4.4",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
