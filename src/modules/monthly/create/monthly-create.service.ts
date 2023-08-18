@@ -1,6 +1,6 @@
-import { database_model } from "../shared/database/dto/database.dto";
-import { monthlyEstimatesSchema } from "./schema/monthly-update.schema";
-import { MonthlyEstimatesDTO } from "./dto/monthly-update.dto";
+import { database_model } from "../../shared/database/dto/database.dto";
+import { monthlyEstimatesSchema } from "../../shared/monthly/schema/monthly-create.schema";
+import { MonthlyEstimatesDTO } from "../../shared/dto/monthly-create.dto";
 
 export class MonthlyEstimate {
   public async create(estimate: MonthlyEstimatesDTO): Promise<string> {

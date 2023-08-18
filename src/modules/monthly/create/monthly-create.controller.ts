@@ -1,6 +1,6 @@
 import { RouteHandler } from "fastify";
-import { MonthlyEstimatesDTO } from "./dto/monthly-update.dto";
-import { MonthlyEstimate } from "../monthly-update/monthly-update.service";
+import { MonthlyEstimatesDTO } from "../../shared/dto/monthly-create.dto";
+import { MonthlyEstimate } from "./monthly-create.service";
 
 const insertNewEstimate: RouteHandler<{
   Body: MonthlyEstimatesDTO;
@@ -13,4 +13,6 @@ const insertNewEstimate: RouteHandler<{
   });
 };
 
-export default { insertNewEstimate };
+export default {
+  insertNewEstimate,
+};

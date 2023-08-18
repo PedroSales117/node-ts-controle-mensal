@@ -1,6 +1,6 @@
 import { FastifyPluginAsyncTypebox } from "@fastify/type-provider-typebox";
-import { MonthlyEstimateInsertSchema } from "./schema/monthly-update.schema";
-import monthlyEstimateController from "./monthly-update.controller";
+import { MonthlyEstimateInsertSchema } from "../../shared/monthly/schema/monthly-create.schema";
+import monthlyEstimateController from "./monthly-create.controller";
 
 const monthlyEstimateRoute: FastifyPluginAsyncTypebox = async (fastify) => {
   fastify.post(
