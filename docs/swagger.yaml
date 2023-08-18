@@ -23,7 +23,7 @@ paths:
     post:
       tags:
         - Monthly Estimates
-      description: Endpoint for update monthly estimates.
+      description: Endpoint for create monthly estimates.
       requestBody:
         content:
           application/json:
@@ -210,11 +210,11 @@ paths:
         required: true
       responses:
         "200":
-          description: Request was sent successfully, database updated.
+          description: Request was sent successfully, database created.
           content:
             application/json:
               schema:
-                description: Request was sent successfully, database updated.
+                description: Request was sent successfully, database created.
                 type: object
                 properties:
                   data:
@@ -260,5 +260,10 @@ paths:
                       - message
                 required:
                   - data
+  /api/v1/monthly/query/estimate:
+    get:
+      responses:
+        "200":
+          description: Default Response
 tags:
   - name: Monthly estimate
