@@ -6,6 +6,7 @@
   "scripts": {
     "start": "esrun src/app.ts --target=node18 --sourcemap --splitting --outdir=dist --platform=node --packages=external --tsconfig=./tsconfig.json",
     "build": "esbuild src/app.ts --target=node18 --bundle --outdir=dist --platform=node --packages=external --tsconfig=./tsconfig.json",
+    "start:dev": "pnpm build && pnpm start",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
   "keywords": [],
