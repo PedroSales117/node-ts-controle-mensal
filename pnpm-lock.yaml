@@ -29,6 +29,9 @@ dependencies:
   mongoose:
     specifier: ^7.4.0
     version: 7.4.0
+  neverthrow:
+    specifier: ^6.0.0
+    version: 6.0.0
 
 devDependencies:
   '@digitak/esrun':
@@ -2155,6 +2158,10 @@ packages:
   /negotiator@0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /neverthrow@6.0.0:
+    resolution: {integrity: sha512-kPZKRs4VkdloCGQXPoP84q4sT/1Z+lYM61AXyV8wWa2hnuo5KpPBF2S3crSFnMrOgUISmEBP8Vo/ngGZX60NhA==}
     dev: false
 
   /normalize-path@3.0.0:
