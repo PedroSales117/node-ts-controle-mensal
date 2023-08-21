@@ -6,7 +6,7 @@ const insertNewEstimate: RouteHandler<{
   Body: MonthlyEstimatesDTO;
 }> = async (request, reply) => {
   const estimate_id = new MonthlyEstimate().create(request.body);
-  return reply.status(200).send({
+  return reply.status(201).send({
     data: {
       message: await estimate_id,
     },
