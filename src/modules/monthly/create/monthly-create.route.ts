@@ -6,7 +6,7 @@ const monthlyEstimateRoute: FastifyPluginAsyncTypebox = async (fastify) => {
   fastify.post(
     "/new-estimate",
     {
-      attachValidation: false,
+      attachValidation: true,
       schema: MonthlyEstimateInsertSchema,
     },
     monthlyEstimateController.insertNewEstimate,

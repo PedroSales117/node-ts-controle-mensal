@@ -23,7 +23,7 @@ paths:
     post:
       tags:
         - Monthly Estimates
-      description: Endpoint for update monthly estimates.
+      description: Endpoint for create monthly estimates.
       requestBody:
         content:
           application/json:
@@ -210,20 +210,20 @@ paths:
         required: true
       responses:
         "200":
-          description: Request was sent successfully, database updated.
+          description: Request was sent successfully, document created.
           content:
             application/json:
               schema:
-                description: Request was sent successfully, database updated.
+                description: Request was sent successfully, document created.
                 type: object
                 properties:
                   data:
                     type: object
                     properties:
-                      message:
+                      object_id:
                         type: string
                     required:
-                      - message
+                      - object_id
                 required:
                   - data
         "400":
@@ -237,10 +237,10 @@ paths:
                   data:
                     type: object
                     properties:
-                      message:
+                      error:
                         type: string
                     required:
-                      - message
+                      - error
                 required:
                   - data
         "500":
@@ -254,11 +254,16 @@ paths:
                   data:
                     type: object
                     properties:
-                      message:
+                      error:
                         type: string
                     required:
-                      - message
+                      - error
                 required:
                   - data
+  /api/v1/monthly/query/estimate:
+    get:
+      responses:
+        "200":
+          description: Default Response
 tags:
   - name: Monthly estimate

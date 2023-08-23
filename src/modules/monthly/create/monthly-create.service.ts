@@ -1,18 +1,56 @@
+import { Result, ok, err } from "neverthrow";
 import { database_model } from "../../shared/database/dto/database.dto";
 import { monthlyEstimatesSchema } from "../../shared/monthly/schema/monthly-create.schema";
-import { MonthlyEstimatesDTO } from "../../shared/dto/monthly-create.dto";
+import {
+  MonthlyEstimatesDTO,
+  MonthlyEstimatesDTOSchema,
+} from "../../shared/dto/monthly.dto";
+import {
+  IEstimateBadRequestReplyDTO,
+  IEstimateCreatedReplyDTO,
+  IEstimateErrorReplyDTO,
+  IEstimateInternalServerReplyDTO,
+} from "../../shared/dto/monthly-reply.dto";
+import { returnMissingRequestFields } from "../../shared/helpers/validate-request-fields.helper";
 
-export class MonthlyEstimate {
-  public async create(estimate: MonthlyEstimatesDTO): Promise<string> {
-    const monthly_estimate = database_model<MonthlyEstimatesDTO>(
-      "meses",
-      monthlyEstimatesSchema,
-    );
+const create = async (
+  estimate: MonthlyEstimatesDTO,
+): Promise<Result<IEstimateCreatedReplyDTO, IEstimateErrorReplyDTO>> => {
+  const missing_fields = returnMissingRequestFields(
+    Object.keys(estimate),
+    Object.keys(MonthlyEstimatesDTOSchema.properties),
+  );
 
-    const new_estimate = new monthly_estimate(estimate);
-
-    return await new_estimate.collection.insertOne(estimate).then((result) => {
-      return String(result.insertedId);
-    });
+  if (missing_fields.length > 0) {
+    return err({
+      status: 400,
+      data: {
+        error: `Missing required field ${missing_fields.join(", ")}`,
+      },
+    } as IEstimateBadRequestReplyDTO);
   }
-}
+
+  const new_estimate = await database_model<MonthlyEstimatesDTO>(
+    "meses",
+    monthlyEstimatesSchema,
+  ).collection.insertOne(estimate);
+
+  if (!new_estimate.insertedId)
+    return err({
+      status: 500,
+      data: {
+        error: "Internal server error",
+      },
+    } as IEstimateInternalServerReplyDTO);
+
+  return ok({
+    status: 201,
+    data: {
+      object_id: new_estimate.insertedId.toString(),
+    },
+  });
+};
+
+export default {
+  create,
+};
