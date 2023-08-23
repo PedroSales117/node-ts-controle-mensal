@@ -1,6 +1,6 @@
 import { database_model } from "../../shared/database/dto/database.dto";
 import { monthlyEstimatesSchema } from "../../shared/monthly/schema/monthly-create.schema";
-import { MonthlyEstimatesDTO } from "../../shared/dto/monthly-create.dto";
+import { MonthlyEstimatesDTO } from "../../shared/dto/monthly.dto";
 import { MonthlyQueryEstimateDTO } from "./dto/monthly-query.dto";
 
 export class MonthlyEstimateQuery {

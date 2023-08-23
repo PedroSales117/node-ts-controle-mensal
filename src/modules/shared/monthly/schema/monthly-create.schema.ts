@@ -1,7 +1,7 @@
 import {
   MonthlyEstimatesDTO,
   MonthlyEstimatesDTOSchema,
-} from "../../dto/monthly-create.dto";
+} from "../../dto/monthly.dto";
 import { FastifySchema } from "fastify";
 import { database_schema } from "../../database/dto/database.dto";
 import { Type } from "@sinclair/typebox";
