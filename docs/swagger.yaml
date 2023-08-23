@@ -210,20 +210,20 @@ paths:
         required: true
       responses:
         "200":
-          description: Request was sent successfully, database created.
+          description: Request was sent successfully, document created.
           content:
             application/json:
               schema:
-                description: Request was sent successfully, database created.
+                description: Request was sent successfully, document created.
                 type: object
                 properties:
                   data:
                     type: object
                     properties:
-                      message:
+                      object_id:
                         type: string
                     required:
-                      - message
+                      - object_id
                 required:
                   - data
         "400":
@@ -237,10 +237,10 @@ paths:
                   data:
                     type: object
                     properties:
-                      message:
+                      error:
                         type: string
                     required:
-                      - message
+                      - error
                 required:
                   - data
         "500":
@@ -254,10 +254,10 @@ paths:
                   data:
                     type: object
                     properties:
-                      message:
+                      error:
                         type: string
                     required:
-                      - message
+                      - error
                 required:
                   - data
   /api/v1/monthly/query/estimate:

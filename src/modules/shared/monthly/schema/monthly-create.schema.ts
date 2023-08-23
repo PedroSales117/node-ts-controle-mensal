@@ -6,9 +6,15 @@ import { FastifySchema } from "fastify";
 import { database_schema } from "../../database/dto/database.dto";
 import { Type } from "@sinclair/typebox";
 
-const MonthlyEstimateResponseDTOSchema = Type.Object({
+const MonthlyEstimateReplyDTOSchema = Type.Object({
   data: Type.Object({
-    message: Type.String(),
+    object_id: Type.String(),
+  }),
+});
+
+const MonthlyEstimateErrorReplyDTOSchema = Type.Object({
+  data: Type.Object({
+    error: Type.String(),
   }),
 });
 
@@ -21,16 +27,16 @@ export const MonthlyEstimateInsertSchema: FastifySchema = {
   body: MonthlyEstimatesDTOSchema,
   response: {
     200: {
-      description: "Request was sent successfully, database created.",
-      ...MonthlyEstimateResponseDTOSchema,
+      description: "Request was sent successfully, document created.",
+      ...MonthlyEstimateReplyDTOSchema,
     },
     400: {
       description: "Bad request, must be revised.",
-      ...MonthlyEstimateResponseDTOSchema,
+      ...MonthlyEstimateErrorReplyDTOSchema,
     },
     500: {
       description: "Internal server error.",
-      ...MonthlyEstimateResponseDTOSchema,
+      ...MonthlyEstimateErrorReplyDTOSchema,
     },
   },
 };
@@ -42,15 +48,15 @@ export const MonthlyEstimateReadSchema: FastifySchema = {
   response: {
     200: {
       description: "Request was sent successfully, object retrieved.",
-      ...MonthlyEstimateResponseDTOSchema,
+      ...MonthlyEstimateReplyDTOSchema,
     },
     400: {
       description: "Bad request, must be revised.",
-      ...MonthlyEstimateResponseDTOSchema,
+      ...MonthlyEstimateErrorReplyDTOSchema,
     },
     500: {
       description: "Internal server error.",
-      ...MonthlyEstimateResponseDTOSchema,
+      ...MonthlyEstimateErrorReplyDTOSchema,
     },
   },
 };
