@@ -1,7 +1,12 @@
 import { StatusCodes } from "http-status-codes";
 
-export interface IEstimateCreatedReplyDTO {
-  status: typeof StatusCodes.CREATED;
+export interface IEstimateOkReplyDTO {
+  status: StatusCodes.OK | StatusCodes.CREATED;
+  data: unknown;
+}
+
+export interface IEstimateCreatedReplyDTO extends IEstimateOkReplyDTO {
+  status: StatusCodes.CREATED;
   data: {
     object_id: string;
   };
