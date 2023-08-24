@@ -8,7 +8,10 @@ export interface IEstimateCreatedReplyDTO {
 }
 
 export interface IEstimateErrorReplyDTO {
-  status: StatusCodes.BAD_REQUEST | StatusCodes.INTERNAL_SERVER_ERROR;
+  status:
+    | StatusCodes.BAD_REQUEST
+    | StatusCodes.INTERNAL_SERVER_ERROR
+    | StatusCodes.NOT_FOUND;
   data: {
     error: string;
   };
@@ -16,6 +19,13 @@ export interface IEstimateErrorReplyDTO {
 
 export interface IEstimateBadRequestReplyDTO extends IEstimateErrorReplyDTO {
   status: StatusCodes.BAD_REQUEST;
+  data: {
+    error: string;
+  };
+}
+
+export interface IEstimateNotFoundReplyDTO extends IEstimateErrorReplyDTO {
+  status: StatusCodes.NOT_FOUND;
   data: {
     error: string;
   };
