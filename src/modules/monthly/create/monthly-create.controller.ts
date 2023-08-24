@@ -11,9 +11,7 @@ const insertNewEstimate: RouteHandler<{
     return reply.status(estimate_reply.error.status).send(estimate_reply.error);
   }
 
-  return reply
-    .status(estimate_reply.value.status)
-    .send(estimate_reply.value.data);
+  return reply.status(estimate_reply.value.status).send(estimate_reply.value);
 };
 
 export default {
