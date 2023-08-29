@@ -209,7 +209,7 @@ paths:
                 - troca_ativos
         required: true
       responses:
-        "200":
+        "201":
           description: Request was sent successfully, document created.
           content:
             application/json:
@@ -262,6 +262,11 @@ paths:
                   - data
   /api/v1/monthly/query/estimate:
     get:
+      responses:
+        "200":
+          description: Default Response
+  /api/v1/monthly/update/estimate:
+    post:
       responses:
         "200":
           description: Default Response
