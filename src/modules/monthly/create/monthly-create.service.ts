@@ -11,21 +11,21 @@ import {
   IEstimateErrorReplyDTO,
   IEstimateInternalServerReplyDTO,
 } from "../../shared/dto/monthly-reply.dto";
-import { returnMissingRequestFields } from "../../shared/helpers/validate-request-fields.helper";
+import { validateRequiredFields } from "../../shared/helpers/validate-request-fields.helper";
 
 const create = async (
   estimate: MonthlyEstimatesDTO,
 ): Promise<Result<IEstimateCreatedReplyDTO, IEstimateErrorReplyDTO>> => {
-  const missing_fields = returnMissingRequestFields(
+  const missing_fields_validator = validateRequiredFields(
     Object.keys(estimate),
     Object.keys(MonthlyEstimatesDTOSchema.properties),
   );
 
-  if (missing_fields.length > 0) {
+  if (missing_fields_validator.isErr()) {
     return err({
       status: 400,
       data: {
-        error: `Missing required field ${missing_fields.join(", ")}`,
+        error: missing_fields_validator.error,
       },
     } as IEstimateBadRequestReplyDTO);
   }
