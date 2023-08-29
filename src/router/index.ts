@@ -1,6 +1,7 @@
 import { generateAPIDocs } from "../configurations/api-docs/index";
 import monthlyQueryEstimateRoute from "../modules/monthly/query/monthly-query.route";
 import monthlyEstimateRoute from "../modules/monthly/create/monthly-create.route";
+import monthlyUpdateEstimateRoute from "../modules/monthly/update/monthly-update-route";
 import root_router from "./root.router";
 import {
   FastifyPluginAsyncTypebox,
@@ -18,5 +19,8 @@ export const router_v1: FastifyPluginAsyncTypebox = async (fastify) => {
   await fastify.register(monthlyEstimateRoute, { prefix: "/monthly" });
   await fastify.register(monthlyQueryEstimateRoute, {
     prefix: "/monthly/query",
+  });
+  await fastify.register(monthlyUpdateEstimateRoute, {
+    prefix: "/monthly/update",
   });
 };
