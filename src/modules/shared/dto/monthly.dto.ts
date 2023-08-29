@@ -75,4 +75,33 @@ export const MonthlyEstimatesDTOSchema = Type.Object({
   }),
 });
 
+export const MonthlyEstimateReplyDTOSchema = Type.Object({
+  data: Type.Object({
+    object_id: Type.String(),
+  }),
+});
+
+export const MonthlyEstimateErrorReplyDTOSchema = Type.Object({
+  data: Type.Object({
+    error: Type.String(),
+  }),
+});
+
+export const MonthlyEstimateUpdatedReplyDTOSchema = Type.Object({
+  data: Type.Object({
+    updated_estimate: MonthlyEstimatesDTOSchema,
+  }),
+});
+
+export const MonthlyEstimateUpdateDTOSchema = Type.Object({
+  _id: Type.Required(Type.String()),
+  new_estimate: MonthlyEstimatesDTOSchema,
+});
+
 export type MonthlyEstimatesDTO = Static<typeof MonthlyEstimatesDTOSchema>;
+export type MonthlyEstimateUpdatedReplyDTO = Static<
+  typeof MonthlyEstimateUpdatedReplyDTOSchema
+>;
+export type MonthlyEstimateUpdateDTO = Static<
+  typeof MonthlyEstimateUpdateDTOSchema
+>;
